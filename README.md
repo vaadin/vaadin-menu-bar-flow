@@ -1,5 +1,5 @@
 # MenuBar Component for Vaadin Flow
-foo
+foobar
 This project is the Component wrapper implementation of [`<vaadin-menu-bar>`](https://github.com/vaadin/vaadin-menu-bar) element
 for use from the server side with [Vaadin Flow](https://github.com/vaadin/flow).
 
