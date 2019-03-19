@@ -1,0 +1,6 @@
+{
+  "name": "vaadin-menu-bar-flow",
+  "dependencies": {
+    "vaadin-menu-bar": "master"
+  }
+}

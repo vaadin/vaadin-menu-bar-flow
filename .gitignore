@@ -18,3 +18,4 @@ driver
 .idea/
 *.iml
 
+**/bower_components/**
