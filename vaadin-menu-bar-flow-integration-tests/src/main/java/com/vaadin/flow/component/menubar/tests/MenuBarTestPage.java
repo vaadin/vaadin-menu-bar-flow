@@ -22,7 +22,6 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.menubar.MenuBar;
-import com.vaadin.flow.component.menubar.RootMenuItem;
 import com.vaadin.flow.router.Route;
 
 @Route("menu-bar-test")
@@ -32,17 +31,23 @@ public class MenuBarTestPage extends Div {
         MenuBar menuBar = new MenuBar();
         add(menuBar);
 
-        RootMenuItem foo = menuBar.addItem("foo");
+        MenuItem foo = menuBar.addItem("foo");
         menuBar.addItem("bar");
 
-        MenuItem baz = foo.getContextMenu().addItem("baz");
+        MenuItem baz = foo.getSubMenu().addItem("baz");
 
         MenuItem headingItem = baz.getSubMenu().addItem(new H1("EZ4ENCE"));
         headingItem.addClickListener(e -> System.out.println("clicked h1"));
 
-        RootMenuItem itemWithIcon = menuBar.addItem("");
+        MenuItem itemWithIcon = menuBar.addItem("");
         itemWithIcon.add(createIcon(), new Label("asdf"));
         itemWithIcon.addClickListener(e -> System.out.println("click"));
+
+        MenuItem checkable = foo.getSubMenu().addItem("checkable");
+        checkable.setCheckable(true);
+        checkable.addClickListener(e -> {
+            System.out.println(e.getSource().isChecked());
+        });
     }
 
     private Component createIcon() {
