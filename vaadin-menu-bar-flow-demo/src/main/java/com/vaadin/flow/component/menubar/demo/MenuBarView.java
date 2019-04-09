@@ -176,10 +176,11 @@ public class MenuBarView extends DemoView {
                 e -> selected.setText("Debug"
                         + (e.getSource().isChecked() ? " (On)" : " (Off)")));
         debug.setCheckable(true);
-        development.getSubMenu()
-                .addItem("Logging", e -> selected.setText("Logging "
-                        + (e.getSource().isChecked() ? " (On)" : " (Off)")))
-                .setCheckable(true);
+        MenuItem logging = development.getSubMenu().addItem("Logging",
+                e -> selected.setText("Logging "
+                        + (e.getSource().isChecked() ? " (On)" : " (Off)")));
+        logging.setCheckable(true);
+        logging.setChecked(true);
 
         Stream.of("Compression", "Caching").forEach(option -> optimizations
                 .getSubMenu()
