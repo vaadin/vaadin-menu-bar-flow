@@ -201,11 +201,19 @@ public class MenuBarView extends DemoView {
 
         menuBar.addItem(new Html("<b>Home</b>"), e -> selected.setText("Home"));
 
-        MenuItem item = menuBar.addItem("New", e -> selected.setText("New"));
+        MenuItem item = menuBar.addItem("New");
         item.addComponentAsFirst(new Icon(VaadinIcon.PLUS));
 
-        menuBar.addItem(new Icon(VaadinIcon.BELL),
-                e -> selected.setText("Bell"));
+        item.getSubMenu().addItem("New Project",
+                e -> selected.setText("New Project"));
+        item.getSubMenu().addItem("New Report",
+                e -> selected.setText("New Report"));
+
+        item = menuBar.addItem(new Icon(VaadinIcon.BELL));
+        item.getSubMenu().addItem("Notifications",
+                e -> selected.setText("Notifications"));
+        item.getSubMenu().addItem("Mark as Read",
+                e -> selected.setText("Mark as Read"));
         // end-source-example
 
         addCard("Items", "Using Components in Menu Bar Buttons", menuBar,
