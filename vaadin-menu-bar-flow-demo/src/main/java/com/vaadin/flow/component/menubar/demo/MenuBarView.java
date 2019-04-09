@@ -23,6 +23,7 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.contextmenu.SubMenu;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
@@ -193,7 +194,7 @@ public class MenuBarView extends DemoView {
 
     private void createUsingComponents() {
         // begin-source-example
-        // source-example-heading: Using Components in Menu Bar Buttons
+        // source-example-heading: Item Components
         MenuBar menuBar = new MenuBar();
 
         Text selected = new Text("");
@@ -201,23 +202,28 @@ public class MenuBarView extends DemoView {
 
         menuBar.addItem(new Html("<b>Home</b>"), e -> selected.setText("Home"));
 
-        MenuItem item = menuBar.addItem("New");
-        item.addComponentAsFirst(new Icon(VaadinIcon.PLUS));
+        MenuItem profile = menuBar.addItem("Profile");
+        profile.addComponentAsFirst(new Icon(VaadinIcon.USER));
 
-        item.getSubMenu().addItem("New Project",
-                e -> selected.setText("New Project"));
-        item.getSubMenu().addItem("New Report",
-                e -> selected.setText("New Report"));
+        profile.getSubMenu().addItem("Edit Profile",
+                e -> selected.setText("Edit Profile"));
 
-        item = menuBar.addItem(new Icon(VaadinIcon.BELL));
+        // Components can be added to submenus also:
+        profile.getSubMenu().add(new Hr());
+
+        profile.getSubMenu().addItem("Privacy Settings",
+                e -> selected.setText("Privacy Settings"));
+        profile.getSubMenu().addItem("Terms of Service",
+                e -> selected.setText("Terms of Service"));
+
+        MenuItem item = menuBar.addItem(new Icon(VaadinIcon.BELL));
         item.getSubMenu().addItem("Notifications",
                 e -> selected.setText("Notifications"));
         item.getSubMenu().addItem("Mark as Read",
                 e -> selected.setText("Mark as Read"));
         // end-source-example
 
-        addCard("Items", "Using Components in Menu Bar Buttons", menuBar,
-                message);
+        addCard("Items", "Item Components", menuBar, message);
     }
 
 }
