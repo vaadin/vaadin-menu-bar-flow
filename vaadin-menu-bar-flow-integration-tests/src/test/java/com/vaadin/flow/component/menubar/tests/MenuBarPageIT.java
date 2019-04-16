@@ -48,9 +48,9 @@ public class MenuBarPageIT extends AbstractComponentIT {
     }
 
     @Test
-    public void ellipsisButtonNotRendered() {
-        Assert.assertNull("Ellipsis button was unexpectedly found",
-                menuBar.getEllipsisButton());
+    public void overflowButtonNotRendered() {
+        Assert.assertNull("Overflow button was unexpectedly found",
+                menuBar.getOverflowButton());
     }
 
     @Test
@@ -141,15 +141,15 @@ public class MenuBarPageIT extends AbstractComponentIT {
     }
 
     @Test
-    public void buttonsOverflow_itemsMovedToEllipsisSubMenu() {
+    public void buttonsOverflow_itemsMovedToOverflowSubMenu() {
         click("set-width");
         click("add-root-item");
-        TestBenchElement ellipsisButton = menuBar.getEllipsisButton();
-        Assert.assertNotNull("Expected the ellipsis button to be rendered",
-                ellipsisButton);
+        TestBenchElement overflowButton = menuBar.getOverflowButton();
+        Assert.assertNotNull("Expected the overflow button to be rendered",
+                overflowButton);
         assertButtonContents("item 1");
 
-        ellipsisButton.click();
+        overflowButton.click();
         verifyOpened();
         Assert.assertArrayEquals(new String[] { "<p>item 2</p>", "added item" },
                 getOverlayMenuItemContents());
@@ -171,7 +171,7 @@ public class MenuBarPageIT extends AbstractComponentIT {
     @Test
     public void buttonWithClickListenerOverflows_clickListenerWorksInSubMenu() {
         click("set-width");
-        menuBar.getEllipsisButton().click();
+        menuBar.getOverflowButton().click();
         getOverlayMenuItems().get(0).click();
         assertMessage("clicked item 2");
     }
@@ -179,7 +179,7 @@ public class MenuBarPageIT extends AbstractComponentIT {
     @Test
     public void overflow_openAndClose_unOverflow_clickButton_listenerCalled() {
         click("set-width");
-        menuBar.getEllipsisButton().click();
+        menuBar.getOverflowButton().click();
         verifyOpened();
         clickBody();
         click("reset-width");
@@ -220,7 +220,7 @@ public class MenuBarPageIT extends AbstractComponentIT {
     public void disableItem_overflow_itemDisabled() {
         click("toggle-disable");
         click("set-width");
-        menuBar.getEllipsisButton().click();
+        menuBar.getOverflowButton().click();
         verifyOpened();
         assertDisabled(getOverlayMenuItems().get(0), true);
     }
@@ -229,12 +229,12 @@ public class MenuBarPageIT extends AbstractComponentIT {
     public void overflow_disableItem_itemDisabled() {
         click("set-width");
         click("toggle-disable");
-        menuBar.getEllipsisButton().click();
+        menuBar.getOverflowButton().click();
         verifyOpened();
         assertDisabled(getOverlayMenuItems().get(0), true);
         // repeat
         clickBody();
-        menuBar.getEllipsisButton().click();
+        menuBar.getOverflowButton().click();
         verifyOpened();
         assertDisabled(getOverlayMenuItems().get(0), true);
     }
@@ -244,7 +244,7 @@ public class MenuBarPageIT extends AbstractComponentIT {
     public void disable_overflow_openAndClose_unOverflow_buttonDisabled() {
         click("toggle-disable");
         click("set-width");
-        menuBar.getEllipsisButton().click();
+        menuBar.getOverflowButton().click();
         verifyOpened();
         clickBody();
         click("reset-width");
