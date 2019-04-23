@@ -20,7 +20,6 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
@@ -240,7 +239,6 @@ public class MenuBarPageIT extends AbstractComponentIT {
     }
 
     @Test
-    @Ignore // https://github.com/vaadin/vaadin-menu-bar/issues/41
     public void disable_overflow_openAndClose_unOverflow_buttonDisabled() {
         click("toggle-disable");
         click("set-width");
