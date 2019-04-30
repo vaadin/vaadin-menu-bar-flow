@@ -39,6 +39,13 @@
         <module>vaadin-menu-bar-flow-demo</module>
     </modules>
 
+    <repositories>
+        <repository>
+            <id>vaadin-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+        </repository>
+    </repositories>
+
     <profiles>
         <profile>
             <id>default</id>
