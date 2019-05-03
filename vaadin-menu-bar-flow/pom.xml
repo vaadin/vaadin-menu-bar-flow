@@ -29,6 +29,11 @@
         </dependency>
         <dependency>
             <groupId>org.webjars.bowergithub.vaadin</groupId>
+            <artifactId>vaadin-context-menu</artifactId>
+            <version>4.3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bowergithub.vaadin</groupId>
             <artifactId>vaadin-list-box</artifactId>
             <version>1.1.0</version>
         </dependency>
