@@ -21,6 +21,10 @@ window.Vaadin.Flow.menubarConnector = {
     menubar.$connector = {
 
       updateButtons: function () {
+        customElements.whenDefined('vaadin-menu-bar').then(menubar.$connector.__updateButtons);
+      },
+
+      __updateButtons: function () {
 
         // Remove hidden items entirely from the array. Just hiding them
         // could cause the overflow button to be rendered without items.
@@ -43,7 +47,9 @@ window.Vaadin.Flow.menubarConnector = {
         menubar._buttons.forEach(function (button) {
           if (button.item && button.item.component) {
             button.addEventListener('click', function (e) {
-              button.item.component.dispatchEvent(new Event('click'));
+              if (e.path.indexOf(button.item.component) === -1) {
+                button.item.component.click();
+              }
             });
           }
         });
