@@ -21,10 +21,11 @@ window.Vaadin.Flow.menubarConnector = {
     menubar.$connector = {
 
       updateButtons: function () {
-        customElements.whenDefined('vaadin-menu-bar').then(menubar.$connector.__updateButtons);
-      },
-
-      __updateButtons: function () {
+        if (!menubar.shadowRoot) {
+          // workaround for https://github.com/vaadin/flow/issues/5722
+          setTimeout(() => menubar.$connector.updateButtons());
+          return;
+        }
 
         // Remove hidden items entirely from the array. Just hiding them
         // could cause the overflow button to be rendered without items.
