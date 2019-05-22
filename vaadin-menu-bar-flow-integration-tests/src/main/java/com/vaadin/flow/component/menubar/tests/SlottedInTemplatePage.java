@@ -17,6 +17,7 @@
 package com.vaadin.flow.component.menubar.tests;
 
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.router.Route;
 
@@ -25,7 +26,7 @@ public class SlottedInTemplatePage extends Div {
 
     public SlottedInTemplatePage() {
         MenuBar menuBar = new MenuBar();
-        menuBar.addItem("foo");
+        menuBar.addItem("foo", e -> add(new Label("clicked")));
         add(menuBar);
     }
 }

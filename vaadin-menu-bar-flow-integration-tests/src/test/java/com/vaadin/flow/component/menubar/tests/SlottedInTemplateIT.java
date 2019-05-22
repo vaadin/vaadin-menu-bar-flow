@@ -16,6 +16,7 @@
 package com.vaadin.flow.component.menubar.tests;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.vaadin.flow.component.menubar.testbench.MenuBarElement;
@@ -27,11 +28,22 @@ public class SlottedInTemplateIT extends AbstractComponentIT {
 
     private MenuBarElement menuBar;
 
+    @Before
+    public void init() {
+        open();
+        menuBar = $(MenuBarElement.class).first();
+    }
+
     @Test // https://github.com/vaadin/vaadin-menu-bar-flow/issues/33
     public void menuBarSlottedInPolymerTemplate_anotherElementIdMapped_componentRendered_noClientSideErrors() {
-        open();
         checkLogsForErrors();
-        menuBar = $(MenuBarElement.class).first();
         Assert.assertEquals("foo", menuBar.getButtons().get(0).getText());
+    }
+
+    @Test
+    public void menuBarSlottedInPolymerTemplate_anotherElementIdMapped_buttonPropagatesClickToItem() {
+        menuBar.getButtons().get(0).click();
+        Assert.assertEquals(1, $("label").all().size());
+        Assert.assertEquals("clicked", $("label").first().getText());
     }
 }
