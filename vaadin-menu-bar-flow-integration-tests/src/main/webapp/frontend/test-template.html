@@ -13,19 +13,19 @@
   ~ License for the specific language governing permissions and limitations under
   ~ the License.
   -->
-<dom-module id="parent-template">
+<dom-module id="test-template">
     <template>
         <div id="div">id-mapped div</div>
         <slot></slot>
     </template>
 
     <script>
-      class ParentTemplate extends Polymer.Element {
+      class TestTemplate extends Polymer.Element {
         static get is() {
-          return 'parent-template'
+          return 'test-template'
         }
       }
 
-      customElements.define(ParentTemplate.is, ParentTemplate);
+      customElements.define(TestTemplate.is, TestTemplate);
     </script>
 </dom-module>

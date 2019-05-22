@@ -13,20 +13,35 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 package com.vaadin.flow.component.menubar.tests;
 
+import com.vaadin.flow.component.HasComponents;
+import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.menubar.MenuBar;
+import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLayout;
+import com.vaadin.flow.templatemodel.TemplateModel;
 
-@Route(value = "slotted-in-template", layout = ParentTemplate.class)
-public class SlottedInTemplatePage extends Div {
+@Tag("test-template")
+@HtmlImport("test-template.html")
+@JsModule("./test-template.js")
+@Route("slotted-in-template")
+public class SlottedInTemplatePage extends PolymerTemplate<TemplateModel>
+        implements HasComponents, RouterLayout {
+
+    @Id
+    Div div;
 
     public SlottedInTemplatePage() {
         MenuBar menuBar = new MenuBar();
         menuBar.addItem("foo", e -> add(new Label("clicked")));
         add(menuBar);
     }
+
 }
