@@ -13,6 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
+// Error handling functions
+const tryCatchWrapper = function(originalFunction) {
+  return function() {
+    try {
+      originalFunction.apply(this, arguments);
+    } catch (error) {
+      logError(error.message);
+    }
+  }
+}
+
+function logError(message) {
+  console.error("There seems to be an error in the MenuBar:\n" + message + "\n" +
+    "Please submit an issue to https://github.com/vaadin/vaadin-menu-bar-flow/issues/new!");
+}
+
 window.Vaadin.Flow.menubarConnector = {
   initLazy: function (menubar) {
     if (menubar.$connector) {
@@ -20,7 +37,7 @@ window.Vaadin.Flow.menubarConnector = {
     }
     menubar.$connector = {
 
-      updateButtons: function () {
+      updateButtons: tryCatchWrapper(function () {
         if (!menubar.shadowRoot) {
           // workaround for https://github.com/vaadin/flow/issues/5722
           setTimeout(() => menubar.$connector.updateButtons());
@@ -48,7 +65,7 @@ window.Vaadin.Flow.menubarConnector = {
             });
           }
         });
-      }
+      })
     }
   }
 };
