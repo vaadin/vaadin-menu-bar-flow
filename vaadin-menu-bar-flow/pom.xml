@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.webjars.bowergithub.vaadin</groupId>
             <artifactId>vaadin-overlay</artifactId>
-            <version>3.2.11</version>
+            <version>3.2.17</version>
         </dependency>
         <dependency>
             <groupId>org.webjars.bowergithub.polymerelements</groupId>
