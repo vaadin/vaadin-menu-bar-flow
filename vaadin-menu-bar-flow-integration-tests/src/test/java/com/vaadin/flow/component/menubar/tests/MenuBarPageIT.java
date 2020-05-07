@@ -38,6 +38,8 @@ public class MenuBarPageIT extends AbstractComponentIT {
     @Before
     public void init() {
         open();
+        waitUntil(driver -> findElements(By.tagName("vaadin-menu-bar"))
+                .size() > 0, 300);
         menuBar = $(MenuBarElement.class).first();
     }
 
