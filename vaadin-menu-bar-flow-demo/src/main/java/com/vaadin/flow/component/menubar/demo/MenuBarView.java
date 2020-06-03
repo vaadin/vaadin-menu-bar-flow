@@ -19,6 +19,8 @@ import java.util.stream.Stream;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.contextmenu.SubMenu;
@@ -28,6 +30,8 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.menubar.MenuBarVariant;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.router.Route;
 
@@ -39,6 +43,7 @@ public class MenuBarView extends DemoView {
 
     @Override
     public void initView() {
+        createButtonIssue();
         createBasicDemo();
         createOpenOnHover();
         createOverflowingButtons();
@@ -49,6 +54,22 @@ public class MenuBarView extends DemoView {
         createTertiaryThemeVariant();
         createTertiaryInlineThemeVariant();
         createSmallThemeVariant();
+    }
+
+    private void createButtonIssue() {
+        // begin-source-example
+        // source-example-heading: Button Issue
+        MenuBar menuBar = new MenuBar();
+        Button btn = new Button(VaadinIcon.TRASH.create());
+        btn.addThemeVariants(ButtonVariant.LUMO_ICON);
+        HorizontalLayout hl = new HorizontalLayout(btn);
+        hl.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
+        hl.setWidth("200px");
+        menuBar.addItem("foo").getSubMenu().add(hl);
+
+        // end-source-example
+
+        addCard("Button Issue", menuBar);
     }
 
     private void createBasicDemo() {
